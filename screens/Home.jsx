@@ -4,6 +4,8 @@ import { colors, defaultStyle } from "../styles/styles";
 import Header from "../components/Header";
 import { Avatar, Button } from "react-native-paper";
 import SearchModal from "../components/SearchModal";
+import ProductCard from "../components/ProductCard";
+import { useNavigation } from "@react-navigation/native";
 
 const categories = [
   { category: "Nice", _id: "bduqjd" },
@@ -18,6 +20,7 @@ const products = [
   {
     price: 2313,
     name: "Sample",
+    stock: 12,
     _id: "dsonsnvovir",
     images: [
       {
@@ -32,9 +35,15 @@ const Home = () => {
   const [activeSearch, setActiveSearch] = useState(false);
   const [SearchQuery, setSearchQuery] = useState("");
 
+  const navigate = useNavigation();
+
   const categoryButtonHandler = (id) => {
     console.log(id);
     setCategory(id);
+  };
+
+  const addToCartHandler = (id) => {
+    console.log("Add to cart", id);
   };
 
   return (
@@ -117,6 +126,28 @@ const Home = () => {
                 </Button>
               );
             })}
+          </ScrollView>
+        </View>
+        {/* Products  */}
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <ScrollView>
+            {products.map((item, index) => (
+              <ProductCard
+                stock={item.stock}
+                name={item.name}
+                price={item.price}
+                image={item.images[0]?.url}
+                key={item._id}
+                id={item._id}
+                addToCartHandler={addToCartHandler}
+                i={index}
+                navigate={navigate}
+              />
+            ))}
           </ScrollView>
         </View>
       </View>

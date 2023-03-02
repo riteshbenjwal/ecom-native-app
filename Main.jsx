@@ -1,17 +1,10 @@
-import {
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  StatusBar,
-  View,
-  Platform,
-} from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./screens/Home";
 import ProductDetails from "./screens/ProductDetails";
-
+import Toast from "react-native-toast-message";
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
@@ -28,6 +21,7 @@ const Main = () => {
           <Stack.Screen name="productdetails" component={ProductDetails} />
         </Stack.Group>
       </Stack.Navigator>
+      <Toast position="top" />
     </NavigationContainer>
   );
 };

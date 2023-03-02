@@ -6,6 +6,7 @@ import { Avatar, Button } from "react-native-paper";
 import SearchModal from "../components/SearchModal";
 import ProductCard from "../components/ProductCard";
 import { useNavigation } from "@react-navigation/native";
+import Footer from "../components/Footer";
 
 const categories = [
   { category: "Nice", _id: "bduqjd" },
@@ -22,6 +23,39 @@ const products = [
     name: "Sample",
     stock: 12,
     _id: "dsonsnvovir",
+    images: [
+      {
+        url: "https://picsum.photos/200/300",
+      },
+    ],
+  },
+  {
+    price: 2313,
+    name: "Sample",
+    stock: 12,
+    _id: "onsnvovir",
+    images: [
+      {
+        url: "https://picsum.photos/200/300",
+      },
+    ],
+  },
+  {
+    price: 2313,
+    name: "Sample",
+    stock: 12,
+    _id: "dsonsvir",
+    images: [
+      {
+        url: "https://picsum.photos/200/300",
+      },
+    ],
+  },
+  {
+    price: 2313,
+    name: "Sample",
+    stock: 12,
+    _id: "dsonvovir",
     images: [
       {
         url: "https://picsum.photos/200/300",
@@ -134,7 +168,7 @@ const Home = () => {
             flex: 1,
           }}
         >
-          <ScrollView>
+          <ScrollView horizontal>
             {products.map((item, index) => (
               <ProductCard
                 stock={item.stock}
@@ -151,6 +185,7 @@ const Home = () => {
           </ScrollView>
         </View>
       </View>
+      <Footer activeRoute={"home"} />
     </>
   );
 };

@@ -14,6 +14,7 @@ const CartItem = ({
   id,
   decrementHandler,
   incrementhandler,
+  navigate,
 }) => {
   return (
     <View
@@ -49,6 +50,7 @@ const CartItem = ({
           style={{
             fontSize: 17,
           }}
+          onPress={() => navigate.navigate("productdetails", { id })}
         >
           {name}
         </Text>

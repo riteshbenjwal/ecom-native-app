@@ -9,7 +9,7 @@ import {
 import { Avatar, Button } from "react-native-paper";
 import ButtonBox from "../components/ButtonBox";
 import Footer from "../components/Footer";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader.jsx";
 
 const Profile = ({ navigation, route }) => {
   const [avatar, setAvatar] = useState(defaultImg);
@@ -49,6 +49,7 @@ const Profile = ({ navigation, route }) => {
   const user = {
     name: "John Doe",
     email: "john@example.com",
+    role: "admin",
   };
 
   return (

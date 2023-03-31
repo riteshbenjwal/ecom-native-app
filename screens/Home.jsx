@@ -18,12 +18,13 @@ const categories = [
   { category: "Home", _id: "baqduqqjd" },
 ];
 
-const products = [
+export const products = [
   {
     price: 2313,
     name: "Sample",
     stock: 12,
     _id: "dsonsnvovir",
+    category: "dneeeoe",
     images: [
       {
         url: "https://picsum.photos/200/300",
@@ -35,6 +36,7 @@ const products = [
     name: "Sample",
     stock: 12,
     _id: "onsnvovir",
+    category: "dneeeoeqevev",
     images: [
       {
         url: "https://picsum.photos/200/300",

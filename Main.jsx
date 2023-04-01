@@ -17,6 +17,11 @@ import UpdateProfile from "./screens/UpdateProfile";
 import ChangePassword from "./screens/ChangePassword";
 import Orders from "./screens/Orders";
 import AdminPanel from "./screens/Admin/AdminPanel";
+import Categories from "./screens/Admin/Categories";
+import AdminOrders from "./screens/Admin/AdminOrders";
+import UpdateProduct from "./screens/Admin/UpdateProduct";
+import NewProduct from "./screens/Admin/NewProduct";
+import ProductImages from "./screens/Admin/ProductImages";
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
@@ -45,6 +50,11 @@ const Main = () => {
 
           {/* Admin Route  */}
           <Stack.Screen name="adminpanel" component={AdminPanel} />
+          <Stack.Screen name="categories" component={Categories} />
+          <Stack.Screen name="adminorders" component={AdminOrders} />
+          <Stack.Screen name="updateproduct" component={UpdateProduct} />
+          <Stack.Screen name="newproduct" component={NewProduct} />
+          <Stack.Screen name="productimages" component={ProductImages} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />

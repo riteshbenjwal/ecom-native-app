@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   colors,
   defaultStyle,
@@ -9,14 +9,28 @@ import {
 } from "../styles/styles";
 import { Button, TextInput } from "react-native-paper";
 import Footer from "../components/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/actions/userAction";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loading = false;
+  const dispatch = useDispatch();
+  // const { loading, message, error, isAuthenticated } = useSelector(
+  //   (state) => state.user
+  // );
 
-  const submitHandler = () => {};
+  // useEffect(() => {
+  //   if (error) {
+  //     Toast();
+  //   }
+  // }, []);
+
+  const submitHandler = () => {
+    dispatch(login(email, password));
+  };
   return (
     <>
       <View style={defaultStyle}>

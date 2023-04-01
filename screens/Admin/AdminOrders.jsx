@@ -1,29 +1,17 @@
 import { View, Text, ScrollView } from "react-native";
 import React from "react";
-import { colors, defaultStyle, formHeading } from "../styles/styles";
-import Header from "../components/Header";
-import Loader from "../components/Loader";
+import { colors, defaultStyle, formHeading } from "../../styles/styles";
+import Header from "../../components/Header";
+import Loader from "../../components/Loader";
+import OrderItem from "../../components/OrderItem";
 import { Headline } from "react-native-paper";
-import OrderItem from "../components/OrderItem";
+import { orders } from "../Orders";
 
-export const orders = [
-  {
-    _id: "ewvobwvrwovrw",
-    shippingInfo: {
-      address: "73 east",
-      city: "new york",
-      pinCode: "181101",
-      country: "USA",
-    },
-    createdAt: "2021-09-01T12:00:00.000Z",
-    orderStatus: "Processing",
-    paymentMethod: "COD",
-    totalAmount: 2000,
-  },
-];
-
-const Orders = () => {
+const AdminOrders = ({ navigation }) => {
   const loading = false;
+  const processOrderLoading = false;
+
+  const updateHandler = (id) => {};
   return (
     <View
       style={{
@@ -35,7 +23,7 @@ const Orders = () => {
 
       {/* Heading */}
       <View style={{ marginBottom: 20, paddingTop: 70 }}>
-        <Text style={formHeading}>Orders</Text>
+        <Text style={formHeading}>All Orders</Text>
       </View>
 
       {loading ? (
@@ -59,6 +47,9 @@ const Orders = () => {
                   paymentMethod={item.paymentMethod}
                   orderedOn={item.createdAt.split("T")[0]}
                   address={`${item.shippingInfo.address}, ${item.shippingInfo.city}, ${item.shippingInfo.country} ${item.shippingInfo.pinCode}`}
+                  admin={true}
+                  updateHandler={updateHandler}
+                  loading={processOrderLoading}
                 />
               ))
             ) : (
@@ -71,4 +62,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default AdminOrders;

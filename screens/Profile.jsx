@@ -9,15 +9,29 @@ import {
 import { Avatar, Button } from "react-native-paper";
 import ButtonBox from "../components/ButtonBox";
 import Footer from "../components/Footer";
-import Loader from "../components/Loader.jsx";
+import Loader from "../components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser, logout } from "../redux/actions/userActions";
+import {
+  useMessageAndErrorOther,
+  useMessageAndErrorUser,
+} from "../utils/hooks";
+import { useIsFocused } from "@react-navigation/native";
+import mime from "mime";
+import { updatePic } from "../redux/actions/otherAction";
 
 const Profile = ({ navigation, route }) => {
+  const { user } = useSelector((state) => state.user);
   const [avatar, setAvatar] = useState(defaultImg);
-  const isFocused = "";
 
-  const loading = false;
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
-  const logoutHandler = () => {};
+  const loading = useMessageAndErrorUser(navigation, dispatch, "login");
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   const navigateHandler = (text) => {
     switch (text) {
@@ -44,13 +58,29 @@ const Profile = ({ navigation, route }) => {
     }
   };
 
-  const loadingPic = false;
+  const loadingPic = useMessageAndErrorOther(dispatch, null, null, loadUser);
 
-  const user = {
-    name: "John Doe",
-    email: "john@example.com",
-    role: "admin",
-  };
+  useEffect(() => {
+    if (route.params?.image) {
+      setAvatar(route.params.image);
+      // dispatch updatePic Here
+      const myForm = new FormData();
+      myForm.append("file", {
+        uri: route.params.image,
+        type: mime.getType(route.params.image),
+        name: route.params.image.split("/").pop(),
+      });
+      dispatch(updatePic(myForm));
+    }
+
+    dispatch(loadUser());
+  }, [route.params, dispatch, isFocused]);
+
+  useEffect(() => {
+    if (user?.avatar) {
+      setAvatar(user.avatar.url);
+    }
+  }, [user]);
 
   return (
     <>

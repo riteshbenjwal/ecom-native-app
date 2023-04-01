@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./screens/Home";
@@ -22,9 +22,17 @@ import AdminOrders from "./screens/Admin/AdminOrders";
 import UpdateProduct from "./screens/Admin/UpdateProduct";
 import NewProduct from "./screens/Admin/NewProduct";
 import ProductImages from "./screens/Admin/ProductImages";
+import { useDispatch } from "react-redux";
+import { loadUser } from "./redux/actions/userActions";
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
